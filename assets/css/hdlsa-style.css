@@ -1,0 +1,537 @@
+/* Global Reset for Plugin Area */
+.hdlsa-container {
+  /* Reset positioning to play nice with themes */
+  position: relative;
+  width: 100%;
+  /* Mobile: Subtract approx header height or just use viewport height with limits */
+  height: 85vh;
+  max-height: 800px;
+  /* Don't get too crazy tall */
+  background: #000;
+  font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  /* Desktop "Theater Mode" Wrapper */
+}
+
+@media (min-width: 768px) {
+  .hdlsa-container {
+    height: 85vh;
+    /* Slightly smaller on desktop */
+    margin: 20px auto;
+    border-radius: 16px;
+    max-width: 480px;
+    /* Wider mobile style */
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+  }
+}
+
+/* Video Player Layer */
+#hdlsa-full-stream {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 0;
+}
+
+#hdlsa-full-stream video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* UI Overlay Layer */
+.hdlsa-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 10;
+  background: linear-gradient(180deg, rgba(0, 0, 0, 0.6) 0%, rgba(0, 0, 0, 0) 30%, rgba(0, 0, 0, 0.2) 60%, rgba(0, 0, 0, 0.9) 100%);
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  pointer-events: none;
+  /* Let clicks pass through to video/controls */
+}
+
+/* Top Info Bar (Optional addition for future) */
+.hdlsa-top-bar {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  right: 20px;
+  display: flex;
+  justify-content: space-between;
+  pointer-events: auto;
+}
+
+/* Chat Area - Cleaner & More Transparent */
+.hdlsa-chat-container {
+  width: 80%;
+  max-width: 350px;
+  height: 300px;
+  margin-left: 16px;
+  margin-bottom: 20px;
+  /* Space above controls */
+  pointer-events: auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  mask-image: linear-gradient(to top, black 90%, transparent 100%);
+  -webkit-mask-image: linear-gradient(to top, black 90%, transparent 100%);
+}
+
+.hdlsa-chat-container .hdlsa-chat-messages {
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.hdlsa-chat-container .hdlsa-chat-messages::-webkit-scrollbar {
+  display: none;
+}
+
+.hdlsa-chat-msg {
+  align-self: flex-start;
+  background: rgba(0, 0, 0, 0.4);
+  color: #ffffff;
+  padding: 6px 12px;
+  border-radius: 18px;
+  font-size: 13px;
+  line-height: 1.4;
+  max-width: 100%;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
+  animation: slideInLeft 0.3s ease;
+}
+
+.hdlsa-chat-msg .user {
+  color: rgba(255, 255, 255, 0.9);
+  font-weight: 600;
+  margin-right: 4px;
+  opacity: 0.9;
+}
+
+.hdlsa-chat-reply-btn {
+  cursor: pointer;
+  color: #ccc;
+  margin-left: 8px;
+  font-size: 14px;
+  opacity: 0;
+  transition: opacity 0.2s, color 0.2s;
+  display: inline-block;
+}
+
+.hdlsa-chat-msg:hover .hdlsa-chat-reply-btn {
+  opacity: 1;
+}
+
+.hdlsa-chat-reply-btn:hover {
+  color: #fff;
+  transform: scale(1.1);
+}
+
+@keyframes slideInLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-10px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* Featured Product Card - Sleek Floating Card */
+.hdlsa-featured-product {
+  position: absolute;
+  bottom: 90px;
+  /* Above controls */
+  left: 16px;
+  background: rgba(255, 255, 255, 0.95);
+  padding: 10px;
+  border-radius: 12px;
+  width: 200px;
+  /* Wider card */
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+  pointer-events: auto;
+  display: none;
+  animation: popup 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  z-index: 30;
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+.hdlsa-featured-product img {
+  width: 50px;
+  height: 50px;
+  object-fit: cover;
+  border-radius: 8px;
+}
+
+.hdlsa-featured-product .hdlsa-fp-details {
+  flex: 1;
+  overflow: hidden;
+}
+
+.hdlsa-featured-product h4 {
+  margin: 0;
+  font-size: 13px;
+  color: #000;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.hdlsa-featured-product .price {
+  color: #FE2C55;
+  font-weight: 700;
+  font-size: 14px;
+  display: block;
+}
+
+.hdlsa-featured-product .btn-buy-mini {
+  background: #FE2C55;
+  color: white;
+  text-decoration: none;
+  font-size: 11px;
+  padding: 4px 8px;
+  border-radius: 4px;
+  display: inline-block;
+  margin-top: 2px;
+}
+
+.hdlsa-featured-product .close-btn {
+  position: absolute;
+  top: -8px;
+  right: -8px;
+  background: #333;
+  color: white;
+  border: none;
+  border-radius: 50%;
+  width: 20px;
+  height: 20px;
+  font-size: 12px;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+@keyframes popup {
+  from {
+    transform: translateY(20px) scale(0.9);
+    opacity: 0;
+  }
+
+  to {
+    transform: translateY(0) scale(1);
+    opacity: 1;
+  }
+}
+
+/* Bottom Controls Bar */
+.hdlsa-ui-controls {
+  padding: 16px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  pointer-events: auto;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.8), transparent);
+}
+
+.hdlsa-chat-input-area {
+  flex-grow: 1;
+  display: flex;
+  gap: 8px;
+}
+
+.hdlsa-chat-input-area input {
+  width: 100%;
+  background: rgba(255, 255, 255, 0.15);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 24px;
+  padding: 10px 16px;
+  color: white;
+  font-size: 14px;
+  outline: none;
+  transition: 0.2s;
+}
+
+.hdlsa-chat-input-area input:focus {
+  background: rgba(255, 255, 255, 0.25);
+}
+
+.hdlsa-chat-input-area input::placeholder {
+  color: rgba(255, 255, 255, 0.6);
+}
+
+.hdlsa-btn {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(4px);
+  cursor: pointer;
+  transition: transform 0.1s;
+  flex-shrink: 0;
+}
+
+.hdlsa-btn svg {
+  width: 24px;
+  height: 24px;
+  stroke: white;
+}
+
+.hdlsa-btn:active {
+  transform: scale(0.95);
+}
+
+.hdlsa-btn.primary {
+  background: #FE2C55;
+  box-shadow: 0 4px 12px rgba(254, 44, 85, 0.4);
+}
+
+.hdlsa-btn.primary svg {
+  stroke: white;
+}
+
+.hdlsa-btn.off {
+  background: rgba(254, 44, 85, 0.2);
+}
+
+.hdlsa-btn.off svg {
+  stroke: #FE2C55;
+}
+
+/* Shopping Bag Sheet */
+.hdlsa-shopping-bag {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 60vh;
+  background: #fff;
+  border-radius: 20px 20px 0 0;
+  z-index: 100;
+  transform: translateY(110%);
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 -4px 30px rgba(0, 0, 0, 0.2);
+  pointer-events: auto;
+}
+
+.hdlsa-shopping-bag.open {
+  transform: translateY(0);
+}
+
+.hdlsa-shopping-bag .hdlsa-bag-header {
+  padding: 16px 20px;
+  border-bottom: 1px solid #f1f1f1;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.hdlsa-shopping-bag .hdlsa-bag-header h4 {
+  margin: 0;
+  font-size: 18px;
+  font-weight: 700;
+  color: #121212;
+}
+
+.hdlsa-shopping-bag .hdlsa-bag-header button {
+  background: #f5f5f5;
+  border: none;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  font-size: 18px;
+  color: #333;
+}
+
+.hdlsa-shopping-bag .hdlsa-bag-items {
+  flex: 1;
+  overflow-y: auto;
+  padding: 0;
+}
+
+.hdlsa-shopping-bag .hdlsa-bag-items .hdlsa-bag-item-card {
+  display: flex;
+  align-items: center;
+  padding: 12px 20px;
+  border-bottom: 1px solid #fafafa;
+  gap: 16px;
+}
+
+.hdlsa-shopping-bag .hdlsa-bag-items .hdlsa-bag-item-card img {
+  width: 70px;
+  height: 70px;
+  object-fit: cover;
+  border-radius: 8px;
+  background: #f0f0f0;
+}
+
+.hdlsa-shopping-bag .hdlsa-bag-items .hdlsa-bag-item-card .info {
+  flex: 1;
+}
+
+.hdlsa-shopping-bag .hdlsa-bag-items .hdlsa-bag-item-card .info h5 {
+  margin: 0 0 6px;
+  font-size: 15px;
+  color: #111;
+  font-weight: 500;
+}
+
+.hdlsa-shopping-bag .hdlsa-bag-items .hdlsa-bag-item-card .info .price {
+  color: #FE2C55;
+  font-weight: 700;
+  font-size: 15px;
+  display: block;
+  margin-bottom: 8px;
+}
+
+.hdlsa-shopping-bag .hdlsa-bag-items .hdlsa-bag-item-card .btn-buy {
+  padding: 8px 16px;
+  background: #111;
+  color: white;
+  border-radius: 20px;
+  text-decoration: none;
+  font-size: 13px;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+/* Broadcaster Panel Updates */
+.hdlsa-broadcaster-panel {
+  background: #fff;
+  border-radius: 12px;
+  padding: 16px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+}
+
+.hdlsa-broadcaster-panel h3 {
+  margin-top: 0;
+  font-size: 16px;
+  margin-bottom: 12px;
+}
+
+.hdlsa-product-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(80px, 1fr));
+  gap: 10px;
+}
+
+.hdlsa-product-list .hdlsa-product-card {
+  cursor: pointer;
+  border: 2px solid transparent;
+  border-radius: 8px;
+  overflow: hidden;
+  transition: 0.2s;
+}
+
+.hdlsa-product-list .hdlsa-product-card:hover {
+  border-color: #FE2C55;
+}
+
+.hdlsa-product-list .hdlsa-product-card img {
+  width: 100%;
+  aspect-ratio: 1;
+  object-fit: cover;
+  display: block;
+}
+
+.hdlsa-product-list .hdlsa-product-card h5 {
+  margin: 4px 0 0;
+  font-size: 11px;
+  text-align: center;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Floating Hearts */
+.hdlsa-hearts-container {
+  position: absolute;
+  bottom: 100px;
+  right: 20px;
+  width: 60px;
+  height: 300px;
+  pointer-events: none;
+  z-index: 20;
+}
+
+.hdlsa-floating-heart {
+  position: absolute;
+  bottom: 0;
+  right: 10px;
+  width: 32px;
+  height: 32px;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23FE2C55'%3E%3Cpath d='M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z'/%3E%3C/svg%3E");
+  background-size: contain;
+  background-repeat: no-repeat;
+  animation: floatUp 2.5s ease-out forwards;
+}
+
+@keyframes floatUp {
+  0% {
+    transform: translateY(0) scale(0.5);
+    opacity: 0;
+  }
+
+  10% {
+    opacity: 1;
+    transform: translateY(-20px) scale(1);
+  }
+
+  100% {
+    transform: translateY(-300px) scale(1.2) rotate(20deg);
+    opacity: 0;
+  }
+}
+
+/* FIX: Ensure Top Bar is above Overlay Gradient but below Shopping Bag */
+.hdlsa-top-bar {
+  position: absolute;
+  top: 20px;
+  left: 16px;
+  right: 16px;
+  z-index: 50;
+  /* Higher than floaters */
+  display: flex;
+  justify-content: space-between;
+  pointer-events: auto;
+}
+
+/* FIX: Featured Product Visibility */
+.hdlsa-featured-product {
+  display: none !important;
+  /* Force hide initially */
+}
+
+.hdlsa-featured-product.active {
+  display: flex !important;
+  /* Only show when class is added */
+}
+
+/* FIX: Shopping Bag Z-Index & Visibility */
+.hdlsa-shopping-bag {
+  z-index: 200;
+  /* Highest priority */
+}
