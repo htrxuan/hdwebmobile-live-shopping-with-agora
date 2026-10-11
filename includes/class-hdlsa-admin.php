@@ -167,7 +167,7 @@ class HDLSA_Admin
 			),
 			'hdwebmobile-loyalty-points' => array(
 				'name' => 'Loyalty Points & Store Credit',
-				'file' => 'hdwebmobile-loyalty-points/hdwebmobile-loyalty-points.php',
+				'file' => 'hdwebmobile-loyalty-points-store-credit/hdwebmobile-loyalty-points-store-credit.php',
 				'description' => __('Customers earn points on orders and redeem them for a discount -- balance always computed from an audit-logged ledger.', 'hdwebmobile-live-shopping-with-agora'),
 			),
 			'hdwebmobile-media-folder-roles' => array(
