@@ -42,6 +42,9 @@ This service is provided by **Agora.io**:
 *   [Agora.io Terms of Service](https://www.agora.io/en/terms-of-service/)
 *   [Agora.io Privacy Policy](https://www.agora.io/en/privacy-policy/)
 
+= Enjoying this plugin? =
+If it helps your site, please consider [leaving an honest review on WordPress.org](https://wordpress.org/support/plugin/hdwebmobile-live-shopping-with-agora/reviews/#new-post) -- it helps other WordPress users find it. Found a problem or have an idea? Please [open a support topic](https://wordpress.org/support/plugin/hdwebmobile-live-shopping-with-agora/) first so it can be fixed.
+
 == Installation ==
 
 1.  Upload the plugin files to the `/wp-content/plugins/hdwebmobile-live-shopping-with-agora` directory, or install the plugin through the WordPress plugins screen directly.
